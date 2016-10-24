@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     #params[:user] is legacy because vulnerable to mass assignment
     @user = User.new(user_params)
     if @user.save
+      log_in @user
       flash[:success] = "Welcome to the Sample App!"
       redirect_to user_url(@user)
     else
